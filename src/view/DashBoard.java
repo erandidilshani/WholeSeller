@@ -5,8 +5,10 @@
  */
 package view;
 
-import com.sun.istack.internal.logging.Logger;
+import controller.DashBoardController;
+import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +21,7 @@ public class DashBoard extends javax.swing.JFrame {
      */
     public DashBoard() {
         initComponents();
+         loadCount();
     }
 
     /**
@@ -42,7 +45,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblCustomerCount = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -155,8 +158,8 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("customers");
 
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("0");
+        lblCustomerCount.setForeground(new java.awt.Color(255, 255, 255));
+        lblCustomerCount.setText("0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -165,7 +168,7 @@ public class DashBoard extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
+                    .addComponent(lblCustomerCount)
                     .addComponent(jLabel9))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
@@ -175,7 +178,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10)
+                .addComponent(lblCustomerCount)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
@@ -232,7 +235,6 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -246,18 +248,22 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel lblCustomerCount;
     // End of variables declaration//GEN-END:variables
 
-private void loadCount(){
-    try{
+private void loadCount() {
+    try {
+   
         int customerCount=new DashBoardController().getCustomerCount();
-        lblCoustomerCount.setText
+        lblCustomerCount.setText(String.valueOf(customerCount));
+            
+            
+    } catch (ClassNotFoundException ex) {
+         Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+          Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
     }
-    catch(ClassNotFoundException ex){
-        Logger.getLogger(Dashboard.class.getName().log(Level.SEVERE,null,ex);
-    }catch(SQLException ex){
-         Logger.getLogger(Dashboard.class.getName().log(Level.SEVERE,null,ex);
-    }
+  }
 }
 
 
@@ -271,4 +277,4 @@ private void loadCount(){
 
 
 
-}
+
