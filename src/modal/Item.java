@@ -1,85 +1,85 @@
 
 package modal;
 
-import javax.swing.JButton;
-
 public class Item {
-    private String id;
-    private String desc;
-    private double price;
-    private int qty;
+    private String code;
+    private String description;
+    private double unitPrice;
+    private int qtyOnHand;
     
     public Item() {
     }
 
-    public Item(String id, String desc, double price, int qty) {
-        this.id = id;
-        this.desc = desc;
-        this.price = price;
-        this.qty = qty;
+    public Item(String code, String description, double unitPrice, int qtyOnHand) {
+        this.code = code;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.qtyOnHand = qtyOnHand;
     }
 
     /**
-     * @return the id
+     * @return the code
      */
-    public String getId() {
-        return id;
+    public String getCode() {
+        return code;
     }
 
     /**
-     * @param id the id to set
+     * @param code the code to set
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /**
-     * @return the desc
+     * @return the description
      */
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param desc the desc to set
+     * @param description the description to set
      */
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
-     * @return the price
+     * @return the unitPrice
      */
-    public double getPrice() {
-        return price;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
     /**
-     * @param price the price to set
+     * @param unitPrice the unitPrice to set
      */
-    public void setPrice(double price) {
-        this.price = price;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     /**
-     * @return the qty
+     * @return the qtyOnHand
      */
-    public int getQty() {
-        return qty;
+    public int getQtyOnHand() {
+        return qtyOnHand;
     }
 
     /**
-     * @param qty the qty to set
+     * @param qtyOnHand the qtyOnHand to set
      */
-    public void setQty(int qty) {
-        this.qty = qty;
+    public void setQtyOnHand(int qtyOnHand) {
+        this.qtyOnHand = qtyOnHand;
     }
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", desc=" + desc + ", price=" + price + ", qty=" + qty + '}';
+        return "Item{" + "code=" + code + ", description=" + description + ", unitPrice=" + unitPrice + ", qtyOnHand=" + qtyOnHand + '}';
     }
 
     
+    
+   
 }
 
