@@ -38,32 +38,24 @@ public class ItemFormController {
         //2
         PreparedStatement stm= connection.prepareStatement("INSERT INTO Item VALUES(?,?,?,?)");
         //3
-        stm.setObject(1, item.getId());
-        stm.setObject(2, item.getDesc());
-        stm.setObject(3, item.getPrice());
-        stm.setObject(4, item.getQty());
+        stm.setObject(1, item.getCode());
+        stm.setObject(2, item.getDescription());
+        stm.setObject(3, item.getUnitPrice());
+        stm.setObject(4, item.getQtyOnHand());
         //4
         return stm.executeUpdate()>0;
         
     }
     
     
-    public boolean updateItem(Item item) throws ClassNotFoundException, SQLException{
-        
-        Connection connection=DBConnection.getInstance().getConnection();
-        //2
-        PreparedStatement stm= connection.prepareStatement("UPDATE Item SET description=?, unitPrice=? qtyOnHand=? where code=?");
-        
-        stm.setString(1,Item.getDesc());
-        stm.setString(2,Item.getDesc());
-        stm.setString(3,Item.getPrice());
-        stm.setString(4,Item.getQty());
-        
-        return stm.executeUpdate()>0;
-        
-        
-        
-        
+   public boolean updateItem(Item item) throws ClassNotFoundException, SQLException {
+       Connection connection= DBConnection.getInstance().getConnection();
+       PreparedStatement stm = connection.prepareStatement("UPDATE Item SET description=?,unitPrice=?,qtyOnHand=? WHERE code=?");
+       stm.setString(1, item.getDescription());
+       stm.setObject(2, item.getUnitPrice());
+       stm.setObject(3, item.getQtyOnHand());
+        stm.setObject(4, item.getCode());
+       return stm.executeUpdate()>0;
     }
     
     public boolean deleteItem(String id) throws ClassNotFoundException, SQLException{
@@ -105,5 +97,17 @@ public class ItemFormController {
             }
             return list;
 
+    }
+     public Item getItemCodes(String code) throws ClassNotFoundException, SQLException {
+        ResultSet rst = DBConnection.getInstance().getConnection().
+                prepareStatement("SELECT * FROM Item WHERE code='"+code+"'").executeQuery();
+        if(rst.next()){
+            return new Item(rst.getString(1),rst.getString(2), rst.getDouble(3),rst.getInt(4));
+        }
+        return null;
+    }
+
+    public List<String> getItemCodes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
