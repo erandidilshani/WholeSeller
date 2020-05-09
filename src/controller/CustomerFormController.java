@@ -103,6 +103,35 @@ public class CustomerFormController {
 
             }
             return list;
+    }   
+            
+    public List<String> getAllCustomerIds() throws ClassNotFoundException, SQLException{
+        Connection connection= DBConnection.getInstance().getConnection();
+        ResultSet rst=connection.prepareStatement("SELECT id FROM Customer").executeQuery();
+        List<String> tempList = new ArrayList<>();
+                
+        while (rst.next()){
+             tempList.add(rst.getString(1));
+        }
+        return tempList;
+    }
 
+    public Customer getCustomer(String id) throws ClassNotFoundException, SQLException {
+        
+        ResultSet rst = DBConnection.getInstance().getConnection().
+                prepareStatement("SELECT * FROM Customer WHERE id='"+id+"'").executeQuery();
+        
+        if(rst.next()){
+            return new Customer(
+                    rst.getString(1),
+                    rst.getString(2), 
+                    rst.getString(3),
+                    rst.getDouble(4)
+            );
+        }
+        return null;
+    
     }
 }
+
+    
