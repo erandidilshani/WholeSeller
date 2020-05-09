@@ -365,12 +365,12 @@ public class ItemForm extends javax.swing.JFrame {
             
             for(Item item:tempList){
                 modal.addRow(new Object[]{
-                    item.getId(),
-                    item.getDesc(),
+                    item.getCode(),
+                    item.getDescription()sc(),
                     item.getPrice(),
-                    item.getQty()
-                   });
-            }
+                    item.getQtyOnHand()
+            });
+         }
             
         } catch (SQLException ex) {
             Logger.getLogger(ItemForm.class.getName()).log(Level.SEVERE, null, ex);
