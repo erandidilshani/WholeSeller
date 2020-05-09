@@ -24,5 +24,34 @@ public class OrderController {
         }
         return tempList;
     }
+
+    public String getOrderId() throws ClassNotFoundException, SQLException {
+        ResultSet rst=DBConnection.getInstance().getConnection().prepareStatement("SELECT id FROM Orders ORDER BY id DESC LIMIT 1").executeQuery();
+        
+        if(rst.next()){
+            String tempId=rst.getString(1);
+            String[] splitArray=tempId.split("D");
+            int value=Integer.parseInt(splitArray[1]);
+            value++;
+                                                    
+            if(value<10){
+                return "D00"+value;
+            }
+            else if(value<100){
+                return "D0"+value;
+            }
+            else if(value<1000){
+                return "D"+value;
+            }
+            else{
+                return ""+value;
+            }
+        
+        }
+        
+        return "0";
+        
+        
+    }
     
 }
